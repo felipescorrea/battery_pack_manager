@@ -103,25 +103,30 @@
         <div id="packs" class="section hidden">
             <h2>Montagem de Packs</h2>
             <form id="packForm">
-                <label for="series">Células em Série:</label>
+                <label for="series">Células em Série*:</label>
                 <input type="number" id="series" name="series" min="1" required>
-                <label for="parallel">Células em Paralelo:</label>
+                <label for="parallel">Células em Paralelo*:</label>
                 <input type="number" id="parallel" name="parallel" min="1" required>
-                <label for="typeFilter">Filtrar por Tipo:</label>
+                <label for="typeFilter">Filtrar por Tipo*:</label>
                 <select id="typeFilter" name="typeFilter" required>
                     <option value="litio" selected>Lítio</option>
                     <option value="niquel">Níquel</option>
                 </select>
-                <label for="formatFilter">Filtrar por Formato:</label>
+                <label for="formatFilter">Filtrar por Formato*:</label>
                 <select id="formatFilter" name="formatFilter" required>
                     <option value="18650" selected>18650</option>
                 </select>
-                <label for="strategy">Estratégia:</label>
+                <label for="strategy">Estratégia*:</label>
                 <select id="strategy" name="strategy" required>
                     <option value="power" selected>Maior Potência</option>
                     <option value="balance">Melhor Uso</option>
                     <option value="low_power">Menor Potência</option>
                 </select>
+				<label for="minCapacity">Capacidade Mínima (mAh):</label>
+				<input type="number" id="minCapacity" placeholder="Ex.: 2000" />
+
+				<label for="maxCapacity">Capacidade Máxima (mAh):</label>
+				<input type="number" id="maxCapacity" placeholder="Ex.: 3000" />
                 <button type="button" onclick="simulatePack()">Simular</button>
             </form>
             <div id="packResult"></div>
