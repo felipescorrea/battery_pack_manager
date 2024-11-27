@@ -213,10 +213,22 @@ function simulatePack() {
     const type = document.getElementById("typeFilter").value;
     const format = document.getElementById("formatFilter").value;
     const strategy = document.getElementById("strategy").value;
+	
+	// Novos campos para capacidade mínima e máxima
+    const minCapacity = parseFloat(document.getElementById("minCapacity").value) || 0; // Padrão: 0 mAh
+    const maxCapacity = parseFloat(document.getElementById("maxCapacity").value) || Infinity; // Padrão: sem limite superior
 
-    const filteredCells = cells.filter(cell => cell.type === type && cell.format === format);
+    // Filtrar células por tipo, formato e capacidades
+    const filteredCells = cells.filter(cell => 
+        cell.type === type &&
+        cell.format === format &&
+        cell.capacity >= minCapacity &&
+        cell.capacity <= maxCapacity
+    );
+
+    // Verificar se há células suficientes
     if (filteredCells.length < series * parallel) {
-        alert(`Faltam ${series * parallel - filteredCells.length} células para montar este pack.`);
+        alert(`Faltam ${series * parallel - filteredCells.length} células que atendem aos filtros para montar este pack.`);
         return;
     }
 
