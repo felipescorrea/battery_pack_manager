@@ -346,3 +346,50 @@ function updateTable() {
 document.addEventListener("DOMContentLoaded", () => {
     loadCellsFromFile(); // Carrega dados do arquivo na inicialização
 });
+
+function exportCells() {
+    const fileName = "cells.csv";
+    const csvContent = localStorage.getItem(fileName);
+
+    if (!csvContent) {
+        alert("Nenhum conteúdo encontrado para exportar.");
+        return;
+    }
+
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+    URL.revokeObjectURL(link.href);
+}
+
+function importCells() {
+    const fileInput = document.getElementById("importFile");
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Por favor, selecione um arquivo para importar.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        const content = event.target.result;
+
+        // Validar se o arquivo está no formato CSV esperado
+        if (!content.includes(",")) {
+            alert("O arquivo selecionado não é um CSV válido.");
+            return;
+        }
+
+        // Salvar o conteúdo no localStorage
+        const fileName = "cells.csv";
+        localStorage.setItem(fileName, content);
+
+        alert("Arquivo importado com sucesso!");
+		loadCellsFromFile();
+    };
+    reader.readAsText(file);
+}
+
