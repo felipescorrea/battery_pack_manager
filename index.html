@@ -70,6 +70,7 @@
     <div id="menu">
         <a href="#" onclick="showSection('cells')">Cadastrar Células</a>
         <a href="#" onclick="showSection('packs')">Montar Packs</a>
+		<a href="#" onclick="showSection('fileManagement')">Gerenciar Arquivo</a>
     </div>
     <div id="content">
         <div id="cells" class="section">
@@ -132,6 +133,12 @@
             <div id="packResult"></div>
 			<button id="downloadButton" class="hidden">Download</button>
         </div>
+		<div id="fileManagement" class="page hidden">
+			<h2>Gerenciar Arquivo Cells.csv</h2>
+			<button onclick="exportCells()">Exportar Arquivo</button>
+			<input type="file" id="importFile" accept=".csv" />
+			<button onclick="importCells()">Importar Arquivo</button>
+		</div>
     </div>
     <script src="script.js"></script>
 </body>
